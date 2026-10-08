@@ -1,0 +1,314 @@
+/* =========================================================
+   1. VARIÁVEIS DE COR (tema claro é o padrão)
+   Usar variáveis facilita trocar de tema: só mudamos os valores.
+   ========================================================= */
+:root {
+  --fundo: #f4f6f3;
+  --fundo-alt: #e8ede9;
+  --cartao: #ffffff;
+  --texto: #1b2230;
+  --texto-suave: #4b5565;
+  --destaque: #0b7d6e;        /* cor principal (links, botões) */
+  --destaque-texto: #ffffff;  /* texto em cima do destaque */
+  --borda: #cfd8d2;
+  --erro: #b3261e;
+  --raio: 10px;
+}
+
+/* Tema escuro: ativado pelo JavaScript via atributo data-tema="escuro" */
+[data-tema="escuro"] {
+  --fundo: #12151c;
+  --fundo-alt: #181c25;
+  --cartao: #1e232e;
+  --texto: #e6e9ef;
+  --texto-suave: #a7b0bf;
+  --destaque: #3fd8c0;
+  --destaque-texto: #0c1210;
+  --borda: #2d3442;
+  --erro: #ff8a80;
+}
+
+/* =========================================================
+   2. RESET E BASE
+   ========================================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;   /* rolagem suave ao clicar no menu */
+  scroll-padding-top: 70px;  /* evita que o menu fixo cubra o título da seção */
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.65;
+  transition: background .25s, color .25s;
+}
+
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; }
+a { color: var(--destaque); }
+ul, ol { list-style: none; }
+
+/* Foco visível para quem navega pelo teclado */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+.container { width: min(1000px, 92%); margin: 0 auto; }
+
+/* =========================================================
+   3. CABEÇALHO E MENU
+   ========================================================= */
+.topo {
+  position: fixed;           /* menu fixo no topo, visível em toda a página */
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  background: var(--fundo);
+  border-bottom: 1px solid var(--borda);
+}
+
+.topo__interno {
+  width: min(1000px, 92%);
+  margin: 0 auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--texto);
+}
+.logo span { color: var(--destaque); }
+
+.menu ul { display: flex; gap: 6px; }
+
+.menu__link {
+  display: block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--texto-suave);
+  font-weight: 600;
+}
+.menu__link:hover { color: var(--texto); background: var(--fundo-alt); }
+
+/* Link da seção atual (classe adicionada pelo JavaScript) */
+.menu__link.ativo { color: var(--destaque-texto); background: var(--destaque); }
+
+.btn-tema, .btn-menu {
+  background: none;
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--texto);
+  height: 40px;
+  min-width: 40px;
+  font-size: 1.1rem;
+}
+.btn-tema:hover, .btn-menu:hover { background: var(--fundo-alt); }
+
+/* Botão hambúrguer escondido no desktop */
+.btn-menu { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.btn-menu span { width: 20px; height: 2px; background: currentColor; display: block; }
+
+/* =========================================================
+   4. SEÇÕES
+   ========================================================= */
+.secao { padding: 90px 0 70px; }
+.secao--alt { background: var(--fundo-alt); }
+
+.secao__titulo { font-size: 2rem; margin-bottom: 8px; }
+.secao__intro { color: var(--texto-suave); margin-bottom: 32px; max-width: 60ch; }
+.subtitulo { margin: 40px 0 12px; font-size: 1.3rem; }
+
+/* ---------- Sobre mim (hero) ---------- */
+.secao--hero { padding-top: 120px; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.hero__ola { color: var(--destaque); font-weight: 700; }
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin: 4px 0 12px; }
+.hero__cargo { font-size: 1.2rem; font-weight: 600; margin-bottom: 16px; }
+.hero__texto p { margin-bottom: 14px; max-width: 60ch; }
+
+.hero__ficha {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-left: 5px solid var(--destaque);
+  border-radius: var(--raio);
+  padding: 24px;
+}
+.hero__ficha h2 { font-size: 1.3rem; margin-bottom: 12px; }
+.hero__ficha h3 { font-size: 1.05rem; margin: 18px 0 8px; }
+.hero__ficha dt { font-weight: 700; font-size: .9rem; color: var(--texto-suave); }
+.hero__ficha dd { margin-bottom: 8px; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags li {
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: .9rem;
+}
+
+/* Botão principal (também usado no formulário e no modal) */
+.botao {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 24px;
+  background: var(--destaque);
+  color: var(--destaque-texto);
+  border: none;
+  border-radius: var(--raio);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+    transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+.botao:hover { background:#49ffe4; transform: scale(1.1); }
+
+/* ---------- Formação (linha do tempo) ---------- */
+.linha-tempo {
+  border-left: 3px solid var(--borda);
+  padding-left: 28px;
+  display: grid;
+  gap: 28px;
+}
+.linha-tempo li { position: relative; }
+.linha-tempo li::before {         /* bolinha na linha */
+  content: "";
+  position: absolute;
+  left: -37px; top: 6px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: var(--destaque);
+  border: 3px solid var(--fundo);
+}
+.linha-tempo h3 { font-size: 1.2rem; }
+.linha-tempo__local { color: var(--destaque); font-weight: 600; margin-bottom: 4px; }
+
+.idiomas { display: grid; gap: 6px; }
+.idiomas strong { display: inline-block; min-width: 100px; }
+
+/* ---------- Portfólio (grade de projetos) ---------- */
+.grade {
+  display: grid;  
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.grade a{
+    text-decoration: none;
+    transition: transform 0.5s ease-in-out, color 0.5s ease-in-out;
+    transform-origin: left center;
+}
+
+.grade a:hover{    
+    color: #fff;
+    transform: scale(1.1);
+}
+.projeto {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-top: 4px solid var(--destaque);
+  border-radius: var(--raio);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  
+}
+
+.projeto h3 { font-size: 1.15rem; }
+.projeto__tec { color: var(--texto-suave); font-size: .9rem; }
+.projeto__link { margin-top: auto; font-weight: 700; }
+
+/* ---------- Contato ---------- */
+.contato { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
+.contato__lista { display: grid; gap: 6px; }
+
+.campo { margin-bottom: 18px; }
+.campo label { display: block; font-weight: 600; margin-bottom: 6px; }
+.campo input, .campo textarea {
+  width: 100%;
+  padding: 11px 12px;
+  background: var(--cartao);
+  color: var(--texto);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  font: inherit;
+}
+.campo.invalido input, .campo.invalido textarea { border-color: var(--erro); }
+.erro { display: block; min-height: 1.2em; margin-top: 4px; color: var(--erro); font-size: .9rem; }
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  text-align: center;
+  padding: 24px 0;
+  border-top: 1px solid var(--borda);
+  color: var(--texto-suave);
+}
+
+/* =========================================================
+   5. MODAL
+   ========================================================= */
+.modal {
+  position: fixed;
+  inset: 0;                           /* ocupa a tela toda */
+  background: rgba(0, 0, 0, .55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  padding: 16px;
+}
+.modal[hidden] { display: none; }     /* garante que o atributo hidden esconda o modal */
+.modal__caixa {
+  background: var(--cartao);
+  border-radius: var(--raio);
+  padding: 32px;
+  max-width: 420px;
+  text-align: center;
+}
+.modal__caixa h2 { font-size: 1.4rem; margin-bottom: 10px; }
+.modal__caixa p { margin-bottom: 16px; color: var(--texto-suave); }
+
+/* =========================================================
+   6. RESPONSIVIDADE (telas até 760px: celulares e tablets)
+   ========================================================= */
+@media (max-width: 760px) {
+  .btn-menu { display: flex; }
+
+  /* O menu vira uma gaveta que desce do cabeçalho */
+  .menu {
+    position: absolute;
+    top: 60px; left: 0; right: 0;
+    background: var(--fundo);
+    border-bottom: 1px solid var(--borda);
+    display: none;                    /* escondido até clicar no hambúrguer */
+  }
+  .menu.aberto { display: block; }    /* classe adicionada pelo JavaScript */
+  .menu ul { flex-direction: column; padding: 10px 4%; }
+
+  .topo__interno { justify-content: flex-start; }
+  .btn-tema { margin-left: auto; }
+
+  .hero, .contato { grid-template-columns: 1fr; }
+}
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body { transition: none; }
+}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!-- Doctype HTML5: avisa o navegador que usaremos o padrão moderno -->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Viewport: necessário para o site ficar responsivo no celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfólio online de Felipe - desenvolvedor de jogos indie.">
+  <title>Eudlay Felipe | Portfólio</title>
+
+  <!-- Nosso CSS (feito à mão, sem frameworks) -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Aplica o tema salvo ANTES da página aparecer (evita "piscar" claro/escuro).
+       Este pequeno script roda cedo, ainda no <head>. -->
+  <script>
+    (function () {
+      try {
+        var salvo = localStorage.getItem("tema");
+        var escuroSistema = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-tema", salvo || (escuroSistema ? "escuro" : "claro"));
+      } catch (e) {
+        document.documentElement.setAttribute("data-tema", "claro");
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============ CABEÇALHO + MENU (visível em todas as seções) ============ -->
+  <header class="topo">
+    <div class="topo__interno">
+      <a href="#sobre" class="logo">Felipe<span>.dev</span></a>
+
+      <!-- Botão hambúrguer: só aparece em telas pequenas -->
+      <button class="btn-menu" id="btnMenu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Menu de navegação com âncoras (href="#id" leva até a seção com aquele id) -->
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <ul>
+          <li><a href="#sobre" class="menu__link">Sobre mim</a></li>
+          <li><a href="#formacao" class="menu__link">Formação</a></li>
+          <li><a href="#portfolio" class="menu__link">Portfólio</a></li>
+          <li><a href="#contato" class="menu__link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <!-- Botão de tema claro/escuro -->
+      <button class="btn-tema" id="btnTema" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+        <span id="iconeTema" aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ SEÇÃO 1: SOBRE MIM ============ -->
+    <section id="sobre" class="secao secao--hero">
+      <div class="container hero">
+        <div class="hero__texto">
+          <p class="hero__ola">Olá, eu sou o</p>
+          <h1>Eudlay Felipe Gonzaga Santos</h1>
+          <p class="hero__cargo">Desenvolvedor de jogos indie e criador de conteúdo sobre game dev.</p>
+          <p>
+            Eu crio jogos originais na Unity e compartilho o processo de
+            desenvolvimento em um canal no YouTube: mecânicas, game feel,
+            ferramentas e os erros que aparecem no meio do caminho. 
+          </p>
+          <p>
+            Além disso, também gosto de fazer gameplays ao vivo. Tenho a intenção
+            de criar uma comunidade que gosta de jogos e tem interesse em ver os
+            bastidores, por enquanto ta dando certo &#128517;.
+          </p>
+          <a href="#portfolio" class="botao">Ver meus projetos</a>
+        </div>
+
+        <!-- Cartão com informações pessoais e hobbies -->
+        <aside class="hero__ficha">
+          <h2>Ficha rápida</h2>
+          <dl>
+            <dt>Foco</dt><dd>Jogos 2D e 3D na Unity e modelagem 3D</dd>
+            <dt>Linguagens</dt><dd>C#, HTML, CSS, JavaScript, Python</dd>
+            <dt>Idioma</dt><dd>Português (nativo)</dd>
+            <dt>Cidade</dt><dd>Aracaju, SE</dd>
+          </dl>
+          <h3>Hobbies</h3>
+          <ul class="tags">
+            <li>Criar jogos</li>
+            <li>Gravar vídeos</li>
+            <li>Jogar videogame</li>
+            <li>Tocar guitarra</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ SEÇÃO 2: FORMAÇÃO ============ -->
+    <section id="formacao" class="secao">
+      <div class="container">
+        <h2 class="secao__titulo">Formação</h2>
+        <p class="secao__intro">Do mais recente para o mais antigo.</p>
+
+
+        <ol class="linha-tempo">
+          <li>
+            <h3>Desenvolvimento de jogos digitais</h3>
+            <p class="linha-tempo__local">SENAI/SE - Ensino médio com Técnico integrado</p>
+            <p>Modelagem 3D, animção 2D e 3D, C# voltado para jogos, Unity, Blender</p>
+          </li>
+          <li>            
+            <h3>Análise e Desenvolvimento de Sistemas(em andamento)</h3>
+            <p class="linha-tempo__local">Uninter - Centro Universitário</p>
+            <p>Graduação em andamento. Bases de lógica, algoritmos e programação.</p>
+          </li>
+          <li>
+            <h3>The Ultimate 2D & 3D Shader Graph VFX Unity Course</h3>
+            <p class="linha-tempo__local">Udemy - Plataforma de cursos online</p>
+            <p>VFX para jogos digitais</p>
+          </li>
+          <li>            
+            <h3>Jogos 3D na Unity com C# - Do Zero ao Avançado + Multiplayer</h3>
+            <p class="linha-tempo__local">Udemy - Plataforma de cursos online</p>
+            <p>Foco em desenvolver jogos 3D na Unity e uma base de jogos multiplayer utilizando o PHOTON 2</p>
+          </li>
+        </ol>
+
+        <h3 class="subtitulo">Idiomas</h3>
+        <ul class="idiomas">          
+          <li><strong>Português</strong> Nativo</li>
+          <li><strong>Inglês</strong> Avançado</li>
+          <li><strong>Espanhol</strong> Básico</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SEÇÃO 3: PORTFÓLIO ============ -->
+    <section id="portfolio" class="secao secao--alt">
+      <div class="container">
+        <h2 class="secao__titulo">Portfólio</h2>
+        <p class="secao__intro">Alguns trabalhos que já realizei. Clique para ver cada um.</p>
+
+        <div class="grade">          
+          <article class="projeto">
+            <h3>EGG Crusher</h3>
+            <p>Uma demonstração de uma ideia de jogo 2D de ação que tive, ainda em desenvolvimento</p>
+            <p class="projeto__tec">Unity · C# · itch.io</p>
+            <a href="https://br3dartist.itch.io/egg-crusher-demo" target="_blank" rel="noopener" class="projeto__link">Ver projeto</a>
+          </article>
+
+          <article class="projeto">
+            <h3>Low-Poly tree pack</h3>
+            <p>Um kit de árvores low-poly para jogos 3D gratuito para a comunidade de jogos</p>
+            <p class="projeto__tec">Blender</p>
+            <a href="https://br3dartist.itch.io/free-low-poly-tree-pack-br3dartist" target="_blank" rel="noopener" class="projeto__link">Ver projeto</a>
+          </article>
+
+          <article class="projeto">
+            <h3>The Tower & the Fender</h3>
+            <p>Primeiro jogo que fiz para participar de uma Game Jam. A JAM permitia utilizar <strong>IA</strong> pra ajudar</p>
+            <p class="projeto__tec">Unity · Cinemachine · Toon shader</p>
+            <a href="https://br3dartist.itch.io/the-tower-the-fender" target="_blank" rel="noopener" class="projeto__link">Ver projeto</a>
+          </article>
+
+          <article class="projeto">
+            <h3>Canal de desenvolvimento no YouTube</h3>
+            <p>Vídeos sobre desenvolvimento de jogos: bastidores, tutoriais, GAMAPLAYS</p>
+            <p class="projeto__tec">Edição · Roteiro · Game dev</p>
+            <a href="https://www.youtube.com/@FelipeSantosDev-v5f" target="_blank" rel="noopener" class="projeto__link">Ver canal</a>
+          </article>
+
+          <article class="projeto">
+            <h3>Portifólio 3D</h3>
+            <p>Alguns poucos projetos que modelei em 3D</p>
+            <p class="projeto__tec">Modelagem 3D · Blender · Substance Painter </p>
+            <a href="https://www.artstation.com/felipegonzaga5/albums/14725949" target="_blank" rel="noopener" class="projeto__link">Ver portfólio 3D</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SEÇÃO 4: CONTATO ============ -->
+    <section id="contato" class="secao">
+      <div class="container contato">
+        <div>
+          <h2 class="secao__titulo">Contato</h2>
+          <p class="secao__intro">
+            Quer conversar sobre um projeto ou parceria? Preencha o formulário.
+          </p>
+          <ul class="contato__lista">            
+            <li>E-mail: eudlayfegonzaga@gmail.com</li>
+            <li>GitHub: https://github.com/EudlayFelipe</li>
+          </ul>
+        </div>
+
+        
+        <form id="formContato" novalidate>
+          <div class="campo">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name">
+            <small class="erro" id="erroNome" role="alert"></small>
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email">
+            <small class="erro" id="erroEmail" role="alert"></small>
+          </div>
+
+          <div class="campo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="5"></textarea>
+            <small class="erro" id="erroMensagem" role="alert"></small>
+          </div>
+
+          <button type="submit" class="botao">Enviar mensagem</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>© <span id="ano"></span> Felipe. Feito com HTML, CSS e JavaScript puros.</p>
+  </footer>
+
+  <!-- ============ MODAL de confirmação (começa escondido) ============ -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__caixa" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+      <h2 id="modalTitulo">Mensagem enviada com sucesso!</h2>
+      <p>Obrigado pelo contato. Responderei assim que possível.</p>
+      <button class="botao" id="modalFechar">Fechar</button>
+    </div>
+  </div>
+
+  <!-- JavaScript no final do body-->
+  <script src="js/script.js"></script>
+</body>
+</html>
